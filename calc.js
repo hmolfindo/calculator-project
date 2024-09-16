@@ -50,10 +50,13 @@ numKeys.forEach(function(btn){
     display.textContent += this.value;
     display.value = display.textContent;
     })
-})
+});
 
-function popDisplay(){
-    var input = "";
-    const display = document.getElementById("display-area");
+//Add event listener for other buttons
+const equals = document.getElementById("equals");
+const del = document.getElementById("delete");
+const clear = document.getElementById("clear");
 
-};
+clear.addEventListener("click", () => {
+    display.textContent = "";
+});
