@@ -60,3 +60,6 @@ const clear = document.getElementById("clear");
 clear.addEventListener("click", () => {
     display.textContent = "";
 });
+del.addEventListener("click", () => {
+    display.textContent = display.textContent.slice(0, display.textContent.length -1);
+});
