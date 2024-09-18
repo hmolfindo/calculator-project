@@ -19,25 +19,32 @@ function division(num1, num2){
 }
 
 //Variables to use in executing operations
-let num1 = 0;
-let num2 = 0;
-let operator = '';
+let num1 = null;
+let num2 = null;
+let operator = null;
+let secondOperator = null;
+let result = null;
 let isClearDisplay = false;
+let isFirstOperation = true;
 
 //On equals press
 function operate(operator, firstNum, secondNum){
     switch(operator){
         case "+":
-            return addition(firstNum, secondNum);
+            result = addition(firstNum, secondNum);
+            return result;
             break;
         case "-":
-            return subtraction(firstNum, secondNum);
+            result = subtraction(firstNum, secondNum);
+            return result;
             break;
         case "*":
-            return multiplication(firstNum, secondNum);
+            result =  multiplication(firstNum, secondNum);
+            return result;
             break;
         case "/":
-            return division(firstNum, secondNum);
+            result = division(firstNum, secondNum);
+            return result;
             break;
     }
 };
@@ -45,6 +52,7 @@ function operate(operator, firstNum, secondNum){
 
 
 const display = document.getElementById("display-area");
+display.textContent = 0;
 const numKeys = document.querySelectorAll(".num");
 
 function clearDisplay(){
@@ -57,7 +65,7 @@ numKeys.forEach(function(btn){
         if(isClearDisplay){
             clearDisplay();
             isClearDisplay = false;
-        }
+        };
         display.textContent += this.value;
         display.value = display.textContent;
     })
@@ -78,25 +86,67 @@ const subtract = document.getElementById("subtract");
 const multiply = document.getElementById("multiply");
 const divide = document.getElementById("divide");
 
+/* When another operator is pressed
+Display initial result
+Clear screen then listen for input
+If next press is not number
+Show result */
+
 add.addEventListener("click", () => {
-    num1 = display.value;
-    operator = "+";
+    if(!isFirstOperation){
+        num2 = display.value;
+        result = operate(operator, num1, num2);
+        operator = "+";
+        display.textContent = result;
+        num1 = result;
+    }else{
+        num1 = display.value;
+        operator = "+";
+    };
     isClearDisplay = true;
+    isFirstOperation = false;
 });
 subtract.addEventListener("click", () => {
-    num1 = display.value;
-    operator = "-";
+    if(!isFirstOperation){
+        num2 = display.value;
+        result = operate(operator, num1, num2);
+        operator = "-";
+        display.textContent = result;
+        num1 = result;
+    }else{
+        num1 = display.value;
+        operator = "-";
+    };
     isClearDisplay = true;
+    isFirstOperation = false;
 });
 multiply.addEventListener("click", () => {
-    num1 = display.value;
-    operator = "*";
+    if(!isFirstOperation){
+        num2 = display.value;
+        result = operate(operator, num1, num2);
+        operator = "*"
+        display.textContent = result;
+        num1 = result;
+    }else{
+        num1 = display.value;
+        operator = "*"
+    };
     isClearDisplay = true;
+    isFirstOperation = false;
 });
 divide.addEventListener("click", () => {
-    num1 = display.value;
-    operator = "/";
+    if(!isFirstOperation){
+        num2 = display.value;
+        result = operate(operator, num1, num2);
+        operator = "/";
+        display.textContent = result;
+        num1 = result;
+    }else{
+        num1 = display.value;
+        operator = "/";
+    };
     isClearDisplay = true;
+    isFirstOperation = false;
 })
 
 //Add event listener for other buttons
@@ -104,21 +154,29 @@ const equalsBtn = document.getElementById("equals");
 const delBtn = document.getElementById("delete");
 const clearBtn = document.getElementById("clear");
 
+/* When num1 and operator are not null and an operator is pressed
+Result becomes num1
+Operator value is replaced with new input
+Listen for new num2 */
 equalsBtn.addEventListener("click", () => {
-    num2 = display.value;
-    let result = operate(operator, num1, num2);
-    display.textContent = Number(result);
-    isClearDisplay = true;
-    /* num1 = 0;
-    num2 = 0;
-    operator = ""; */
+    if(isFirstOperation){
+        display.textContent = 0;
+    }else{
+        num2 = display.value;
+        result = operate(operator, num1, num2);
+        display.textContent = result;
+        isClearDisplay = true;
+    }
 });
 delBtn.addEventListener("click", () => {
     display.textContent = display.textContent.slice(0, display.textContent.length-1);
 });
 clearBtn.addEventListener("click", () => {
     clearDisplay();
-    num1 = 0;
-    num2 = 0;
-    operator = "";
+    num1 = null;
+    num2 = null;
+    operator = null;
+    result = null;
+    display.value = null;
+    isFirstOperation = true;
 });
