@@ -22,7 +22,6 @@ function division(num1, num2){
 let num1 = null;
 let num2 = null;
 let operator = null;
-let secondOperator = null;
 let result = null;
 let isClearDisplay = false;
 let isFirstOperation = true;
