@@ -18,6 +18,11 @@ function division(num1, num2){
     return num1/num2;
 }
 
+//Percentage
+function percentage(result){
+    return result/100;
+}
+
 //Variables to use in executing operations
 let num1 = null;
 let num2 = null;
@@ -137,8 +142,10 @@ divide.addEventListener("click", () => {
 
 //Add event listener for other buttons
 const equalsBtn = document.getElementById("equals");
-const delBtn = document.getElementById("delete");
+//const delBtn = document.getElementById("delete");
 const clearBtn = document.getElementById("clear");
+const percentBtn = document.getElementById("percent");
+const posnegBtn = document.getElementById("posneg");
 
 equalsBtn.addEventListener("click", () => {
     if(isFirstOperation){
@@ -163,5 +170,16 @@ clearBtn.addEventListener("click", () => {
     result = null;
     display.value = 0;
     display.textContent = 0;
+    isClearDisplay = true;
     isFirstOperation = true;
+});
+
+percentBtn.addEventListener("click", () => {
+    result = percentage(result);
+    display.textContent = result;
+});
+
+posnegBtn.addEventListener("click", () => {
+    result *= -1;
+    display.textContent = result;
 });
