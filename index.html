@@ -7,27 +7,32 @@
     <link rel="stylesheet" href="calc.css">
 </head>
 <body>
-    <div class="container">
-        <div id="display-area"></div>
-        <div class="btn-container">
-            <button class="calc-button" id="clear">AC</button>
-            <button class="calc-button" id="add">+</button>
-            <button class="calc-button" id="subtract">-</button>
-            <button class="calc-button" id="multiply">x</button>
-            <button class="calc-button num" value="7">7</button>
-            <button class="calc-button num" value="8">8</button>
-            <button class="calc-button num" value="9">9</button>
-            <button class="calc-button" id="divide">/</button>
-            <button class="calc-button num" value="4">4</button>
-            <button class="calc-button num" value="5">5</button>
-            <button class="calc-button num" value="6">6</button>
-            <button class="calc-button" id="delete">Del</button>
-            <button class="calc-button num" value="1">1</button>
-            <button class="calc-button num" value="2">2</button>
-            <button class="calc-button num" value="3">3</button>
-            <button class="calc-button" id="equals">=</button>
-            <button class="calc-button num" value="0">0</button>
-            </div>
+    <div id="main">
+        <div class="container">
+            <div id="display-area"></div>
+            <div class="btn-container">
+                <button id="clear">AC</button>
+                <button id="posneg">+/-</button>
+                <button id="percent">%</button>
+                <button id="add">+</button>
+                <button class="num" value="7">7</button>
+                <button class="num" value="8">8</button>
+                <button class="num" value="9">9</button>
+                <button id="subtract">-</button>
+                <button class="num" value="4">4</button>
+                <button class="num" value="5">5</button>
+                <button class="num" value="6">6</button>
+                <button id="multiply">*</button>
+                <button class="num" value="1">1</button>
+                <button class="num" value="2">2</button>
+                <button class="num" value="3">3</button>
+                <button id="divide">/</button>
+                <!-- <button id="delete">Del</button> -->
+                <button class="num" id="zero" value="0">0</button>
+                <button id="equals">=</button>
+                
+                </div>
+        </div>
     </div>
     <script src="calc.js"></script>
 </body>
