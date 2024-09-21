@@ -18,11 +18,6 @@ function division(num1, num2){
     return num1/num2;
 }
 
-//Percentage
-function percentage(result){
-    return result/100;
-}
-
 //Variables to use in executing operations
 let num1 = null;
 let num2 = null;
@@ -36,19 +31,19 @@ function operate(operator, firstNum, secondNum){
     switch(operator){
         case "+":
             result = addition(firstNum, secondNum);
-            return result;
+            return parseFloat(result.toFixed(2));
             break;
         case "-":
             result = subtraction(firstNum, secondNum);
-            return result;
+            return parseFloat(result.toFixed(2));
             break;
         case "*":
             result =  multiplication(firstNum, secondNum);
-            return result;
+            return parseFloat(result.toFixed(2));
             break;
         case "/":
             result = division(firstNum, secondNum);
-            return result;
+            return parseFloat(result.toFixed(2));
             break;
     }
 };
@@ -69,6 +64,9 @@ numKeys.forEach(function(btn){
             isClearDisplay = false;
         };
         display.textContent += this.value;
+        if(display.textContent.length > 13){
+            display.textContent = display.textContent.substring(0, 13);
+        }
         display.value = display.textContent;
     })
         
@@ -175,11 +173,16 @@ clearBtn.addEventListener("click", () => {
 });
 
 percentBtn.addEventListener("click", () => {
-    result = percentage(result);
+    result = display.value / 100;
     display.textContent = result;
+    isClearDisplay = true;
+    isFirstOperation = false;
 });
 
 posnegBtn.addEventListener("click", () => {
-    result *= -1;
+    result = display.value * -1;
+    display.value = result;
     display.textContent = result;
+    isClearDisplay = true;
+    isFirstOperation = false;
 });
